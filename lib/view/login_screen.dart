@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:index_pro/controllers/account_controller.dart';
 
 import 'widgets/custom_widgets.dart';
 
@@ -9,6 +9,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AccountController c = Get.put(AccountController());
     final theme = Theme.of(context);
     return Scaffold(
       body: SafeArea(
@@ -52,29 +53,31 @@ class LoginScreen extends StatelessWidget {
                   label: const Text("Email")),
             ),
             const SizedBox(height: 20),
-            TextField(
-              decoration: InputDecoration(
-                  filled: true,
-                  fillColor: theme.colorScheme.secondaryContainer,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
-                  ),
-                  prefixIcon: const Icon(Icons.lock_open_rounded),
-                  prefixIconColor: theme.colorScheme.primary,
-                  suffixIcon: IconButton(
-                    icon: const Icon(Icons.visibility_off_outlined),
-                    onPressed: () {},
-                  ),
-                  suffixIconColor: theme.colorScheme.primary,
-                  label: const Text("Password")),
-            ),
+            Obx(() => TextField(
+                  controller: c.passwordController,
+                  obscureText: c.hidePassKey.isTrue,
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: theme.colorScheme.secondaryContainer,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
+                      ),
+                      prefixIcon: const Icon(Icons.lock_open_rounded),
+                      prefixIconColor: theme.colorScheme.primary,
+                      suffixIcon: IconButton(
+                        icon: c.hidePassKey.isTrue ? const Icon(Icons.visibility_outlined) : const Icon(Icons.visibility_off_outlined),
+                        onPressed: () => c.hidePassKey.value = !c.hidePassKey.value,
+                      ),
+                      suffixIconColor: theme.colorScheme.primary,
+                      label: const Text("Password")),
+                )),
             Align(
                 alignment: Alignment.topRight,
                 child: TextButton(
                   style: TextButton.styleFrom(foregroundColor: theme.colorScheme.inverseSurface),
                   child: const Text('Forgot password?'),
-                  onPressed: () {},
+                  onPressed: () => c.onForgetPassword(),
                 )),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 25),
@@ -85,23 +88,16 @@ class LoginScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () => c.onSignIn(),
                   child: const Text("Sign in")),
             ),
-            Center(
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  textStyle: theme.textTheme.bodyMedium,
-                  foregroundColor: theme.colorScheme.outline,
-                ),
-                onPressed: () {},
-                child: const Text("Don't have an account?"),
-              ),
+            const Center(
+              child: Text("Don't have an account?"),
             ),
             Center(
               child: TextButton(
                 child: const Text("Sign up"),
-                onPressed: () {},
+                onPressed: () => c.onSignUp(),
               ),
             )
           ],
