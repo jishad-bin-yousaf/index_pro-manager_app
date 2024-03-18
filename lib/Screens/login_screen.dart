@@ -17,18 +17,23 @@ class LoginScreen extends StatelessWidget {
           alignment: Alignment.topRight,
         )),
         child: ListView(
+          padding: const EdgeInsets.all(20),
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                    padding: const EdgeInsets.only(left: 8.0, top: 120),
+                    padding: const EdgeInsets.only(top: 120),
                     child: Text("Sign in",
                         style: theme.textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                         ))),
                 customDivider(theme),
               ],
+            ),
+            Text(
+              "Free tools to sky-rocket your creative freedom image generator",
+              style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.outline),
             )
           ],
         ),
@@ -45,6 +50,6 @@ Container customDivider(ThemeData theme) {
       color: theme.colorScheme.primary,
       borderRadius: BorderRadius.circular(5),
     ),
-    margin: const EdgeInsets.only(top: 5, left: 8),
+    margin: const EdgeInsets.only(top: 5, bottom: 15),
   );
 }
