@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CustomWidgets {
-  static Container customDivider(ThemeData theme) {
+  static Container customDivider(ThemeData theme, {Color? color}) {
     return Container(
       width: 40,
       height: 5,
       decoration: BoxDecoration(
-        color: theme.colorScheme.primary,
+        color: color ?? theme.colorScheme.primary,
         borderRadius: BorderRadius.circular(5),
       ),
       margin: const EdgeInsets.only(top: 5, bottom: 15),

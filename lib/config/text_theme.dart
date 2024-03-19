@@ -34,9 +34,10 @@ final textTheme = TextTheme(
     height: 32 / 24,
   ),
   titleLarge: GoogleFonts.poppins(
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.w500,
     fontSize: 22,
     height: 28 / 22,
+    letterSpacing: 0.9,
   ),
   titleMedium: GoogleFonts.poppins(
     fontWeight: FontWeight.w600,
