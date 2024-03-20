@@ -31,7 +31,6 @@ class ChangePasswordScreen extends StatelessWidget {
             'Reset Password',
             style: theme.textTheme.labelLarge?.copyWith(
               color: theme.colorScheme.background,
-              fontSize: 20,
             ),
           ),
         ),

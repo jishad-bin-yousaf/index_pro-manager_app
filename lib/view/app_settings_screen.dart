@@ -26,9 +26,8 @@ class AppSettingsScreen extends StatelessWidget {
                 style: FilledButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)), backgroundColor: theme.colorScheme.primary),
                 child: Text(
                   'Save',
-                  style: theme.textTheme.labelMedium?.copyWith(
+                  style: theme.textTheme.labelLarge?.copyWith(
                     color: theme.colorScheme.background,
-                    fontSize: 20,
                   ),
                 ),
               ),
@@ -46,7 +45,7 @@ class AppSettingsScreen extends StatelessWidget {
                 children: [
                   Text(
                     'Transfer Rate',
-                    style: theme.textTheme.titleLarge?.copyWith(color: theme.colorScheme.background),
+                    style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.background),
                   ),
                   Container(
                     padding: const EdgeInsets.only(left: 45, top: 12, bottom: 12, right: 5),
@@ -59,11 +58,11 @@ class AppSettingsScreen extends StatelessWidget {
                         children: [
                           TextSpan(
                             text: '92.00',
-                            style: theme.textTheme.titleLarge?.copyWith(color: theme.primaryColor),
+                            style: theme.textTheme.titleMedium?.copyWith(color: theme.primaryColor),
                           ),
                           TextSpan(
                             text: ' INR',
-                            style: theme.textTheme.titleLarge?.copyWith(color: theme.colorScheme.inverseSurface),
+                            style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.inverseSurface),
                           ),
                         ],
                       ),
