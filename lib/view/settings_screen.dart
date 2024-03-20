@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:index_pro/controllers/settings_controller.dart';
 
+import 'app_settings_screen.dart';
 import 'change_password_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -36,7 +37,7 @@ class SettingsScreen extends StatelessWidget {
               leading: Icon(Icons.account_balance_outlined, color: theme.colorScheme.primary),
               title: const Text('App Settings'),
               trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () => c.onAppSettingsClicked(),
+              onTap: () => Get.to(() => const AppSettingsScreen()),
             ),
           ),
           Card(

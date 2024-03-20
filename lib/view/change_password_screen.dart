@@ -12,6 +12,13 @@ class ChangePasswordScreen extends StatelessWidget {
     final theme = Theme.of(context);
     AccountController c = Get.put(AccountController());
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton.filled(
+          style: IconButton.styleFrom(padding: const EdgeInsets.only(left: 5)),
+          onPressed: () => Get.back(),
+          icon: Icon(Icons.arrow_back_ios, color: theme.colorScheme.background),
+        ),
+      ),
       resizeToAvoidBottomInset: false,
       bottomSheet: Container(
         height: 60,
@@ -36,7 +43,7 @@ class ChangePasswordScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                  padding: const EdgeInsets.only(top: 120),
+                  padding: const EdgeInsets.only(top: 20),
                   child: Text("Change Password",
                       style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.bold,
