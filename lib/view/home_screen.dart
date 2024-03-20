@@ -100,18 +100,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                                 Container(
                                   padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: (data.status ?? '') == 'Success'
-                                        ? const Color.fromRGBO(0, 124, 12, 1)
-                                        : (data.status ?? '') == 'Pending'
-                                            ? const Color.fromRGBO(0, 131, 107, 1)
-                                            : (data.status ?? '') == 'Finish'
-                                                ? const Color.fromRGBO(228, 171, 0, 1)
-                                                : (data.status ?? '') == 'Failed'
-                                                    ? const Color.fromRGBO(164, 0, 0, 1)
-                                                    : Colors.blueAccent,
-                                  ),
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: CustomWidgets.getStatusColor(data.status ?? '')),
                                   child: Text(
                                     data.status ?? '',
                                     style: theme.textTheme.titleSmall?.copyWith(color: theme.colorScheme.background),

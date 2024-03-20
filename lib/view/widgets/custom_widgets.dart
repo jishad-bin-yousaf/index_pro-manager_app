@@ -12,6 +12,20 @@ class CustomWidgets {
       margin: const EdgeInsets.only(top: 5, bottom: 15),
     );
   }
+
+  static Color getStatusColor(String status) {
+    return status.trim() == 'Success'.trim()
+        ? const Color.fromRGBO(0, 124, 12, 1)
+        : status.trim() == 'Pending'.trim()
+            ? const Color.fromRGBO(0, 131, 107, 1)
+            : status.trim() == 'Finish'.trim()
+                ? const Color.fromRGBO(228, 171, 0, 1)
+                : status.trim() == 'Cancelled'.trim()
+                    ? Colors.deepOrange
+                    : status.trim() == 'Failed'.trim()
+                        ? const Color.fromRGBO(164, 0, 0, 1)
+                        : Colors.blueAccent;
+  }
   /* static InputDecoration textFieldDecoration({
     required String label,
     String? errorText,
