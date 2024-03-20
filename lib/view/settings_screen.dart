@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:index_pro/controllers/settings_controller.dart';
 
+import 'change_password_screen.dart';
+
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
@@ -23,7 +25,7 @@ class SettingsScreen extends StatelessWidget {
               leading: Icon(Icons.lock_open_rounded, color: theme.colorScheme.primary),
               title: const Text('Change Password'),
               trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () => c.onChangePassword(),
+              onTap: () => Get.to(() => const ChangePasswordScreen()),
             ),
           ),
           Card(
