@@ -7,4 +7,9 @@ class FireBaseFunctions {
     final collection = await _db.collection('transaction').get();
     return collection.docs.map((doc) => TransactionModel.fromMap(doc.id, doc.data())).toList();
   }
+
+  Future<List<TransactionModel>> getPendingTransactions() async {
+    final collection = await _db.collection('transaction').where('status', isEqualTo: 'Pending').get();
+    return collection.docs.map((doc) => TransactionModel.fromMap(doc.id, doc.data())).toList();
+  }
 }

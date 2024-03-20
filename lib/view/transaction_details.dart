@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../Models/home.dart';
 import '../View/widgets/custom_widgets.dart';
+import '../controllers/transaction_details_controller.dart';
 
 class TransactionDetailsView extends StatelessWidget {
   const TransactionDetailsView({super.key, required this.data});
@@ -229,26 +230,5 @@ class TransactionDetailsView extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class TransactionDetailsController extends GetxController {
-  RxBool isButtonEnabled = false.obs;
-
-  TransactionDetailsController({required this.data});
-  final TransactionModel data;
-  String currentStatus = '';
-  RxBool showStatusSelection = false.obs;
-  TextEditingController commentController = TextEditingController();
-  @override
-  void onInit() {
-    currentStatus = data.status ?? '';
-    super.onInit();
-  }
-
-  onStatusSelected(String status) {
-    currentStatus = status;
-    showStatusSelection.value = false;
-    isButtonEnabled.value = true;
   }
 }

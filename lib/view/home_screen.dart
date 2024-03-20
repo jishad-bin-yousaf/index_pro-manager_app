@@ -132,7 +132,7 @@ class HomeScreen extends StatelessWidget {
                                   style: theme.textTheme.titleSmall?.copyWith(color: theme.colorScheme.outline),
                                 ),
                                 Text(
-                                  DateFormat('dd-MMM-yy, h:mm a').format(data.createdDate!),
+                                  "${DateFormat('dd-MMM-yy, h:mm a').format(data.createdDate!)}",
                                   style: theme.textTheme.bodyLarge,
                                 ),
                               ],
