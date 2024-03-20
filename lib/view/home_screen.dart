@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:index_pro/view/widgets/custom_widgets.dart';
+import 'package:intl/intl.dart';
 
 import '../controllers/Home_controller.dart';
+import 'transaction_details.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,17 +23,21 @@ class HomeScreen extends StatelessWidget {
           top: 200,
           left: 0,
           right: 0,
-          child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            cards(theme, 'Pending', '05'),
-            cards(theme, 'Complete', '12'),
-            cards(theme, 'Canceled', '10', dividerColor: theme.colorScheme.error),
-          ]))
+          child: GetBuilder(
+            id: 'data',
+            builder: (HomeController c) {
+              return Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+                cards(theme, 'Pending', '${c.pendingCount}'),
+                cards(theme, 'Success', '${c.successCount}'),
+                cards(theme, 'Cancelled', '${c.cancelledCount}', dividerColor: theme.colorScheme.error),
+              ]);
+            },
+          ))
     ]));
   }
 
   body(HomeController c, ThemeData theme) {
     return Column(
-      //  padding: const EdgeInsets.all(15),
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 70, left: 12, right: 12),
@@ -67,70 +73,90 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        Expanded(
-          child: ListView.builder(
-            padding: const EdgeInsets.all(10),
-            itemBuilder: (context, index) {
-              return Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Refer No : 6565655',
-                            style: theme.textTheme.bodyLarge,
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: const Color.fromRGBO(228, 171, 0, 1),
+        GetBuilder(
+          id: 'data',
+          builder: (HomeController c) {
+            return Expanded(
+              child: ListView.builder(
+                padding: const EdgeInsets.all(10),
+                itemCount: c.data.length,
+                itemBuilder: (context, index) {
+                  final data = c.data[index];
+                  return InkWell(
+                    onTap: () {
+                      Get.to(() => TransactionDetailsView(data: data));
+                    },
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Refer No : ${data.trNo}',
+                                  style: theme.textTheme.bodyLarge,
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: (data.status ?? '') == 'Success'
+                                        ? const Color.fromRGBO(0, 124, 12, 1)
+                                        : (data.status ?? '') == 'Pending'
+                                            ? const Color.fromRGBO(0, 131, 107, 1)
+                                            : (data.status ?? '') == 'Finish'
+                                                ? const Color.fromRGBO(228, 171, 0, 1)
+                                                : (data.status ?? '') == 'Failed'
+                                                    ? const Color.fromRGBO(164, 0, 0, 1)
+                                                    : Colors.blueAccent,
+                                  ),
+                                  child: Text(
+                                    data.status ?? '',
+                                    style: theme.textTheme.titleSmall?.copyWith(color: theme.colorScheme.background),
+                                  ),
+                                ),
+                              ],
                             ),
-                            child: Text(
-                              "Finish",
-                              style: theme.textTheme.titleSmall?.copyWith(color: theme.colorScheme.background),
+                            const Divider(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Trade :',
+                                  style: theme.textTheme.titleSmall?.copyWith(color: theme.colorScheme.outline),
+                                ),
+                                Text(
+                                  '${data.tUsdt ?? ''} USTD=${data.tAmount ?? ''} INR',
+                                  style: theme.textTheme.bodyLarge?.copyWith(
+                                    color: theme.colorScheme.primary,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
-                      ),
-                      const Divider(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Trade :',
-                            style: theme.textTheme.titleSmall?.copyWith(color: theme.colorScheme.outline),
-                          ),
-                          Text(
-                            '90 USTD=25,500 INR ',
-                            style: theme.textTheme.bodyLarge?.copyWith(
-                              color: theme.colorScheme.primary,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Date :',
+                                  style: theme.textTheme.titleSmall?.copyWith(color: theme.colorScheme.outline),
+                                ),
+                                Text(
+                                  DateFormat('dd-MMM-yy, h:mm a').format(data.createdDate!),
+                                  style: theme.textTheme.bodyLarge,
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Date :',
-                            style: theme.textTheme.titleSmall?.copyWith(color: theme.colorScheme.outline),
-                          ),
-                          Text(
-                            '12-Aug-23,10:30 AM',
-                            style: theme.textTheme.bodyLarge,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
+                    ),
+                  );
+                },
+              ),
+            );
+          },
         )
       ],
     );

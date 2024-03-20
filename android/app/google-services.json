@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "553240853087",
-    "project_id": "index-pro-c6e52",
-    "storage_bucket": "index-pro-c6e52.appspot.com"
+    "project_number": "53819669374",
+    "project_id": "indexpro-6899f",
+    "storage_bucket": "indexpro-6899f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:553240853087:android:890ba0975abdc799ab39ea",
+        "mobilesdk_app_id": "1:53819669374:android:191bbdbfc726934dd7112f",
         "android_client_info": {
           "package_name": "com.example.index_pro"
         }
@@ -15,7 +15,26 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAw8ILZpXDMf6oCQ5quZIhVV7fLblF1axU"
+          "current_key": "AIzaSyA_Hoa6SkC7o_pSKk2MumSH27Nsl9HxpHo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:53819669374:android:c06c04b8167afd38d7112f",
+        "android_client_info": {
+          "package_name": "com.oditbiz.index_pro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_Hoa6SkC7o_pSKk2MumSH27Nsl9HxpHo"
         }
       ],
       "services": {
