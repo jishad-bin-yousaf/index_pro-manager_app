@@ -68,10 +68,7 @@ class ChangePasswordScreen extends StatelessWidget {
                 ),
                 prefixIcon: const Icon(Icons.lock_open_rounded),
                 prefixIconColor: theme.colorScheme.primary,
-                suffixIcon: IconButton(
-                  icon: c.hidePassKey.isTrue ? const Icon(Icons.visibility_outlined) : const Icon(Icons.visibility_off_outlined),
-                  onPressed: () => c.hidePassKey.value = !c.hidePassKey.value,
-                ),
+                // suffixIcon: const Icon(Icons.visibility_off_outlined),
                 suffixIconColor: theme.colorScheme.primary,
                 label: const Text("New Password")),
           ),

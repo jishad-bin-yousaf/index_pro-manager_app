@@ -29,4 +29,18 @@ class AccountController extends GetxController {
       Get.snackbar('Invalid Sign Up', 'please Enter username and password', snackPosition: SnackPosition.BOTTOM, backgroundColor: Theme.of(Get.context!).colorScheme.errorContainer);
     }
   }
+
+  Future<void> changePassword() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      if ((user != null) && (newPasswordController.text == confirmNewPasswordController.text) && newPasswordController.text.length > 5) {
+        await user.updatePassword(newPasswordController.text);
+        print('Password changed successfully');
+      } else {
+        print('No user signed in');
+      }
+    } catch (e) {
+      print('Error changing password: $e');
+    }
+  }
 }
